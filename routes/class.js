@@ -2,7 +2,6 @@ import { Router } from "express";
 
 import {
   startClass,
-  dismissClass,
   markAttendance,
   getClassesByCourseId,
   getClassById,
@@ -14,13 +13,12 @@ import { checkTeacherRole } from "../middleware/role.js";
 
 const router = Router();
 
-router.post("/startClass", checkTeacherRole, startClass);
-router.put("/class/:id", checkTeacherRole, updateClass);
-router.post("/dismissClass", checkTeacherRole, dismissClass);
-router.post("/markAttendance", markAttendance);
-router.get("/getClassesByCourseId", getClassesByCourseId);
-router.get("/class/students", checkTeacherRole, getClass);
-router.get("/getClassById", checkTeacherRole, getClassById);
-router.delete("/deleteClassById", checkTeacherRole, deleteClassById);
+router.post("/", checkTeacherRole, startClass);
+router.put("/:id", checkTeacherRole, updateClass);
+router.put("/", markAttendance);
+router.get("/", checkTeacherRole, getClassesByCourseId);
+router.get("/students", checkTeacherRole, getClass);
+router.get("/:id", checkTeacherRole, getClassById);
+router.delete("/:id", checkTeacherRole, deleteClassById);
 
 export default router;
